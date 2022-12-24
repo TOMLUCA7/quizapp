@@ -26,7 +26,6 @@ const QuestionsScreen = ({navigation}) => {
   const [score, setScore]= useState(0);
   const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
   const [correctOption, setCorrectOption] = useState(null);
-  const [isOptionsDisabled, setIsOptionsDisabled] = useState(false);
 
   const getQuiz = async() => {
     const api = 'https://opentdb.com/api.php?amount=20&category=18';
@@ -79,12 +78,11 @@ const QuestionsScreen = ({navigation}) => {
     let correct_option = questions[ques].correct_answer
     setCurrentOptionSelected(selectedOption);
     setCorrectOption(correct_option);
-    setIsOptionsDisabled(true);
 
     if(selectedOption == correct_option){
-        setScore(score + 5)
+      setScore(score + 5)
     }
-}
+  }
 
   const renderOptions = () => {
     return(
