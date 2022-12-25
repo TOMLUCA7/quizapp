@@ -13,7 +13,7 @@ const HomeScreen = ({navigation}) => {
         <Animatable.Text 
           style={styles.batton_text} 
           animation="zoomIn" 
-          iterationCount={31} 
+          iterationCount={333} 
           direction="alternate"
         > 
           Let's Play
