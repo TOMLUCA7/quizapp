@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React from 'react'
 
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import Feather from 'react-native-vector-icons/Feather'
 import * as Animatable from 'react-native-animatable';
 
 const GetQuestions = ({navigation, route}) => {
@@ -38,8 +38,8 @@ const GetQuestions = ({navigation, route}) => {
       <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
         <TouchableOpacity style={styles.batton} onPress={() => {navigation.navigate('Home')}}>
           <Text style={styles.batton_text}> 
-            <AntDesign 
-              name='retweet' 
+            <Feather 
+              name='rotate-ccw' 
               size={27} 
               color='#ffff' 
             /> - 
