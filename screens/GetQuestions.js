@@ -37,12 +37,12 @@ const GetQuestions = ({navigation, route}) => {
 
       <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
         <TouchableOpacity style={styles.batton} onPress={() => {navigation.navigate('Home')}}>
-          <Text style={styles.batton_text}>
+          <Text style={styles.batton_text}> 
             <AntDesign 
               name='retweet' 
               size={27} 
               color='#ffff' 
-            /> 
+            /> - 
             BACK TO START
           </Text>
         </TouchableOpacity>

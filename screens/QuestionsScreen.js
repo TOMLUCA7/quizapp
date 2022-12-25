@@ -56,10 +56,10 @@ const QuestionsScreen = ({navigation}) => {
 
   const ShowResult = () => {
     if(score <= 50 ){
-      navigation.navigate('GetQuestions', {score: score})
+      navigation.navigate('SuccessScreen', {score: score})
     }
     else{
-      navigation.navigate('SuccessScreen', {score: score})
+      navigation.navigate('GetQuestions', {score: score})
     }
   } 
 

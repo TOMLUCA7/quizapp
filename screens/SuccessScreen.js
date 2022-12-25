@@ -41,7 +41,8 @@ const SuccessScreen = ({navigation, route}) => {
                     name='trophy' 
                     size={27} 
                     color='#ffff' 
-                  /> BACK TO START 
+                  /> - 
+                  BACK TO START 
                 </Text>
             </TouchableOpacity>
         </View>
