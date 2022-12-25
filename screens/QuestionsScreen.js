@@ -7,6 +7,7 @@ import { View,
 } from 'react-native'
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as Animatable from 'react-native-animatable';
 
 import GetQuestions from './GetQuestions';
 import SuccessScreen from './SuccessScreen';
@@ -108,9 +109,9 @@ const QuestionsScreen = ({navigation}) => {
                   marginVertical: 10,
               }}
             >
-              <Text style={{fontSize: 20, color: '#000000'}}>{option}</Text>
+              <Animatable.Text animation={'flipInX'} style={{fontSize: 20, color: '#000000'}}>{option}</Animatable.Text>
 
-              {/* Show Check Or Cross Icon based on correct answer*/}
+              {/* Show Check Or Cross Icon based on correct answer flipInX*/}
               {
                   option === correctOption ? (
                       <View style={styles.correctOption}>
