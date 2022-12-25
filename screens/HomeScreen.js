@@ -1,15 +1,23 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import React from 'react'
 
+import * as Animatable from 'react-native-animatable';
 
 const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Image
+      <Animatable.Image
         source={require('./../assets/splash_logo.png')}
       />
       <TouchableOpacity style={styles.batton} onPress={() => {navigation.navigate('QuestionsScreen')}}>
-        <Text style={styles.batton_text}>Let's Play</Text>
+        <Animatable.Text 
+          style={styles.batton_text} 
+          animation="zoomIn" 
+          iterationCount={31} 
+          direction="alternate"
+        > 
+          Let's Play
+        </Animatable.Text>
       </TouchableOpacity>
     </View>
   )

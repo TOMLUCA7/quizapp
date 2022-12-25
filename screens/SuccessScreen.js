@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
 import Entypo from 'react-native-vector-icons/Entypo'
+import * as Animatable from 'react-native-animatable';
 
 const SuccessScreen = ({navigation, route}) => {
   const {score} = route.params
@@ -18,7 +19,13 @@ const SuccessScreen = ({navigation, route}) => {
         <View style={{alignItems: 'center'}} >
             <Text style={styles.title}>GREAT JOB</Text>
             <Text style={styles.message} >You passed the quiz</Text>
-            <Text style={styles.score} >Your Score : {score}</Text>
+            <Animatable.Text style={styles.score} 
+              animation="pulse" 
+              iterationCount={31} 
+              direction="alternate"
+            >
+              Your Score : {score}
+            </Animatable.Text>
         </View>
 
         <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
@@ -29,7 +36,13 @@ const SuccessScreen = ({navigation, route}) => {
 
         <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
             <TouchableOpacity style={styles.batton} onPress={() => {navigation.navigate('Home')}}>
-                <Text style={styles.batton_text}><Entypo name='trophy' size={27} color='#ffff' /> BACK TO START </Text>
+                <Text style={styles.batton_text}>
+                  <Entypo 
+                    name='trophy' 
+                    size={27} 
+                    color='#ffff' 
+                  /> BACK TO START 
+                </Text>
             </TouchableOpacity>
         </View>
 

@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React from 'react'
 
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import * as Animatable from 'react-native-animatable';
 
 const GetQuestions = ({navigation, route}) => {
   const {score} = route.params
@@ -19,7 +20,13 @@ const GetQuestions = ({navigation, route}) => {
         <Text style={styles.title}>FAILED</Text>
         <Text style={styles.message} >You need to answer 10</Text>
         <Text style={styles.message} >correct answers</Text>
-        <Text style={{fontWeight: 'bold', fontSize: 25, color: '#E70E02'}} >Your Score : {score}</Text>
+        <Animatable.Text style={styles.score} 
+          animation="pulse" 
+          iterationCount={31} 
+          direction="alternate"
+        >
+          Your Score : {score}
+        </Animatable.Text>
       </View>
 
       <View style={{alignItems: 'center', justifyContent: 'center',}}>
@@ -30,10 +37,16 @@ const GetQuestions = ({navigation, route}) => {
 
       <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
         <TouchableOpacity style={styles.batton} onPress={() => {navigation.navigate('Home')}}>
-          <Text style={styles.batton_text}><AntDesign name='retweet' size={27} color='#ffff' />  BACK TO START</Text>
+          <Text style={styles.batton_text}>
+            <AntDesign 
+              name='retweet' 
+              size={27} 
+              color='#ffff' 
+            /> 
+            BACK TO START
+          </Text>
         </TouchableOpacity>
       </View>
-
     </View>
   )
 }
@@ -89,6 +102,11 @@ const styles = StyleSheet.create({
     paddingTop: 30, 
     fontSize: 60, 
     fontWeight: 'bold', 
+    color: '#E70E02'
+  },
+  score: {
+    fontWeight: 'bold', 
+    fontSize: 25, 
     color: '#E70E02'
   },
 });
