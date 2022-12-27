@@ -98,7 +98,12 @@ const QuestionsScreen = ({navigation}) => {
                   borderColor: option === correctOption
                   ? '#00C851'
                   : option === currentOptionSelected
-                  ? '#ff4444' 
+                  ? '#ff4444'
+                  : '#D8E1E0',
+                  backgroundColor: option === correctOption
+                  ? '#00C851' + '20'
+                  : option === currentOptionSelected
+                  ? '#ff4444' + '20'
                   : '#D8E1E0',
                   height: 60, 
                   borderRadius: 20,
