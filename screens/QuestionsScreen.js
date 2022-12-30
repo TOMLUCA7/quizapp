@@ -85,6 +85,7 @@ const QuestionsScreen = ({navigation}) => {
     }
   }
 
+
   const renderOptions = () => {
     return(
       <View>
@@ -175,7 +176,7 @@ const QuestionsScreen = ({navigation}) => {
           {/* Bottom Next and Show results */}
           <View style={styles.bottom}>
 
-          {ques !== 19 && <TouchableOpacity style={styles.button} onPress={nextQuestion}>
+            {ques !== 19 && <TouchableOpacity style={styles.button} onPress={nextQuestion}>
               <Text style={styles.button_text}>NEXT</Text>
             </TouchableOpacity>}
 

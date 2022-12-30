@@ -12,8 +12,8 @@ const HomeScreen = ({navigation}) => {
       <TouchableOpacity style={styles.batton} onPress={() => {navigation.navigate('QuestionsScreen')}}>
         <Animatable.Text 
           style={styles.batton_text} 
-          animation="zoomIn" 
-          iterationCount={333} 
+          animation="fadeOut" 
+          iterationCount={500} 
           direction="alternate"
         > 
           Let's Play
