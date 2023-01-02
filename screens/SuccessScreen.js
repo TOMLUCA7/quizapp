@@ -21,7 +21,7 @@ const SuccessScreen = ({navigation, route}) => {
             <Text style={styles.message} >You passed the quiz</Text>
             <Animatable.Text style={styles.score} 
               animation="pulse" 
-              iterationCount={31} 
+              iterationCount={500}
               direction="alternate"
             >
               Your Score : {score}
@@ -59,12 +59,14 @@ const styles = StyleSheet.create({
       flex:1, 
       backgroundColor:'#ffff',
     },
+
     image: {
       height: 60, 
       width: 60, 
       marginRight: 10,
       marginBottom: 5,
     },
+
     header: {
       width: '100%', 
       height: '12%', 
@@ -73,6 +75,7 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between', 
       alignItems: 'flex-end'
     },
+
     text_header: {
       fontWeight:'300%', 
       fontSize:23, 
@@ -82,6 +85,7 @@ const styles = StyleSheet.create({
       fontSize: 28, 
       color: '#ffff',
     },
+
     batton: {
       paddingVertical: 20,
       borderRadius: 16, 
@@ -89,21 +93,35 @@ const styles = StyleSheet.create({
       padding:30,
       marginTop: 10,
       backgroundColor: '#51AE2D',
+      
+      // IOS ONLY
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 9,
+      },
+      shadowOpacity: 0.50,
+      shadowRadius: 12.35,
+      elevation: 19,
     },
+
     batton_text: {
       fontWeight: 'bold',
       fontSize: 20,
       color: '#ffff',
     },
+
     message: {
         fontWeight: 'bold', 
-        fontSize: 25, 
+        fontSize: 25,
     },
+
     score: {
         fontWeight: 'bold', 
         fontSize: 25, 
-        color: '#51AE2D'
+        color: '#51AE2D',
     },
+    
     title: {
         paddingTop: 30, 
         fontSize: 60, 
