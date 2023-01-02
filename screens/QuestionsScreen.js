@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { View, 
+import { 
+  View, 
   Text, 
   StyleSheet, 
   Image,
   TouchableOpacity,
 } from 'react-native'
 
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Animatable from 'react-native-animatable';
 
 import GetQuestions from './GetQuestions';
@@ -27,6 +28,8 @@ const QuestionsScreen = ({navigation}) => {
   const [score, setScore]= useState(0);
   const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
   const [correctOption, setCorrectOption] = useState(null);
+  const [isOptionsDisabled, setIsOptionsDisabled] = useState(false);
+  const [showNextButton, setShowNextButton] = useState(false)
 
   const getQuiz = async() => {
     const api = 'https://opentdb.com/api.php?amount=20&category=18';
@@ -38,14 +41,11 @@ const QuestionsScreen = ({navigation}) => {
     setOptions(generateOptionsAndShuffle(data.results[0]))
   }
 
+
   useEffect(() => {
     getQuiz();
   }, []);
 
-  const nextQuestion = () => {
-    setQues(ques + 1)
-    setOptions(generateOptionsAndShuffle(questions[ques + 1]))
-  }
 
   const generateOptionsAndShuffle = (Question) => {
     const options = [...Question.incorrect_answers]
@@ -54,15 +54,6 @@ const QuestionsScreen = ({navigation}) => {
     //console.log(options)
     return options
   }
-
-  const ShowResult = () => {
-    if(score <= 50 ){
-      navigation.navigate('GetQuestions', {score: score})
-    }
-    else{
-      navigation.navigate('SuccessScreen', {score: score})
-    }
-  } 
 
 
   const ShowQuestion = () =>{
@@ -75,15 +66,55 @@ const QuestionsScreen = ({navigation}) => {
     )
   }
 
+
   const validateAnswer = (selectedOption) => {
     let correct_option = questions[ques].correct_answer
     setCurrentOptionSelected(selectedOption);
     setCorrectOption(correct_option);
+    setIsOptionsDisabled(true);
 
     if(selectedOption == correct_option){
       setScore(score + 5)
     }
+    setShowNextButton(true);
   }
+
+
+  const hendelNext = () => {
+    if(ques === questions.length - 1){
+      ShowResult()
+    } else {
+      setQues(ques + 1);
+      setOptions(generateOptionsAndShuffle(questions[ques + 1]))
+      setCurrentOptionSelected(null);
+      setCorrectOption(null);
+      setIsOptionsDisabled(false);
+      setShowNextButton(false);
+    }
+  }
+
+
+  const renderNextButtton = () => {
+    if(showNextButton){
+      return(
+        <TouchableOpacity style={styles.button} onPress={hendelNext}>
+          <Text style={styles.button_text}> NEXT</Text>
+        </TouchableOpacity>
+      )
+    } else {
+      return null
+    }
+  }
+
+
+  const ShowResult = () => {
+    if(score <= 50 ){
+      navigation.navigate('GetQuestions', {score: score})
+    }
+    else{
+      navigation.navigate('SuccessScreen', {score: score})
+    }
+  } 
 
 
   const renderOptions = () => {
@@ -93,6 +124,7 @@ const QuestionsScreen = ({navigation}) => {
           options.map(option => (
             <TouchableOpacity
               onPress={()=> validateAnswer(option)}
+              disabled={isOptionsDisabled}
               key={option}
               style={{
                   borderWidth: 3,
@@ -121,7 +153,7 @@ const QuestionsScreen = ({navigation}) => {
               {
                   option === correctOption ? (
                       <View style={styles.correctOption}>
-                          <MaterialCommunityIcons 
+                          <Icons 
                             name="check" 
                             style={{
                               color: '#ffff',
@@ -131,7 +163,7 @@ const QuestionsScreen = ({navigation}) => {
                       </View>
                   ): option === currentOptionSelected ? (
                       <View style={styles.incorrectOption}>
-                          <MaterialCommunityIcons 
+                          <Icons 
                             name="close" 
                             style={{
                             color: '#ffff',
@@ -164,8 +196,9 @@ const QuestionsScreen = ({navigation}) => {
       {/* Questions Part */}
       {questions && (
         <View style={{marginTop: 20, marginLeft: 15, marginRight: 15}}>
+
           {/* difficulty */}
-          <Text style={{fontSize: 19, fontWeight: 'bold'}}>Level : {questions[ques].difficulty}</Text>
+          <Text style={{fontSize: 19, fontWeight: 'bold'}}>LEVEL : {questions[ques].difficulty}</Text>
           
           {/* Questions */}
           {ShowQuestion()}
@@ -173,18 +206,9 @@ const QuestionsScreen = ({navigation}) => {
           {/* Answers / options */}
           {renderOptions()}
   
-          {/* Bottom Next and Show results */}
-          <View style={styles.bottom}>
+          {/* Bottom Next and Show results screen */}
+          {renderNextButtton()}
 
-            {ques !== 19 && <TouchableOpacity style={styles.button} onPress={nextQuestion}>
-              <Text style={styles.button_text}>NEXT</Text>
-            </TouchableOpacity>}
-
-            { ques === 19 && <TouchableOpacity style={styles.button} onPress={ShowResult}>
-              <Text style={styles.button_text}>RESULTS SCREEN</Text>
-            </TouchableOpacity>}
-            
-          </View>
         </View>
       )}
     </View>
@@ -203,7 +227,7 @@ const styles = StyleSheet.create({
     height: 60, 
     width: 60, 
     marginRight: 10,
-    marginBottom: 5,
+    marginBottom: 3,
   },
 
   header: {
@@ -232,11 +256,13 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     marginBottom: 5,
+    marginTop: 30,
   },
 
   button_text: {
     color: '#ffff', 
-    fontSize:20,fontWeight: 'bold'
+    fontSize:20,
+    fontWeight: 'bold'
   },
 
   bottom: {

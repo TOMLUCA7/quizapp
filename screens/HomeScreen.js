@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity, Button } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 import * as Animatable from 'react-native-animatable';
@@ -8,6 +8,7 @@ const HomeScreen = ({navigation}) => {
     <View style={styles.container}>
       <Animatable.Image
         source={require('./../assets/splash_logo.png')}
+        animation='lightSpeedIn'
       />
       <TouchableOpacity style={styles.batton} onPress={() => {navigation.navigate('QuestionsScreen')}}>
         <Animatable.Text 
