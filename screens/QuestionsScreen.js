@@ -59,7 +59,7 @@ const QuestionsScreen = ({navigation}) => {
   const ShowQuestion = () =>{
     return(
       <View style={{marginTop: 20, marginBottom: 20,}}>
-        <Text style={{fontSize: 22,}}>
+        <Text style={{fontSize: 22, fontFamily: 'Avenir Next'}}>
           {decodeURIComponent(questions[ques].question)}
         </Text>
       </View>
@@ -147,7 +147,7 @@ const QuestionsScreen = ({navigation}) => {
                   marginVertical: 10,
               }}
             >
-              <Animatable.Text animation={'flipInX'} style={{fontSize: 20, color: '#000000'}}>{option}</Animatable.Text>
+              <Animatable.Text animation={'flipInX'} style={{fontSize: 20, color: '#000000', fontFamily: 'Avenir Next'}}>{option}</Animatable.Text>
 
               {/* Show Check Or Cross Icon based on correct answer flipInX*/}
               {
@@ -198,7 +198,7 @@ const QuestionsScreen = ({navigation}) => {
         <View style={{marginTop: 20, marginLeft: 15, marginRight: 15}}>
 
           {/* difficulty */}
-          <Text style={{fontSize: 19, fontWeight: 'bold'}}>LEVEL : {questions[ques].difficulty}</Text>
+          <Text style={{fontSize: 19, fontWeight: 'bold', fontFamily: 'Avenir Next'}}>LEVEL : {questions[ques].difficulty}</Text>
           
           {/* Questions */}
           {ShowQuestion()}
@@ -247,6 +247,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     fontSize: 28, 
     color: '#ffff',
+    fontFamily: 'Avenir Next'
   },
 
   button: {
