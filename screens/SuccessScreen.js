@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
       },
       shadowOpacity: 0.50,
       shadowRadius: 12.35,
-      elevation: 19,
+      // FOR ANDROID AND IOS
+      elevation: 10,
     },
 
     batton_text: {
