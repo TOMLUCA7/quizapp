@@ -11,8 +11,8 @@ const SuccessScreen = ({navigation, route}) => {
         <View style={styles.header}>
             <Text style={styles.text_header}></Text>
             <Image
-            source={require('../assets/logo.png')}
-            style={styles.image}
+              source={require('../assets/logo.png')}
+              style={styles.image}
             />
         </View>
 
